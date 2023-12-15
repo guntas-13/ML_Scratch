@@ -41,3 +41,6 @@ Arrive at the desired $m$ and $b$ by updating these values following the directi
 \bar{b} = b - L\frac{∂E}{∂b}
 \end{equation}
 ```
+
+## **Visualizing the Loss Function $E(m, b)$**
+![Alt Text]("Linear%20Regression/V1.gif")
