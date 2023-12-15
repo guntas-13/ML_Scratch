@@ -43,4 +43,4 @@ Arrive at the desired $m$ and $b$ by updating these values following the directi
 ```
 
 ## **Visualizing the Loss Function $E(m, b)$**
-![Alt Text]("Linear%20Regression/V1.gif")
+![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/V1.gif)
