@@ -29,7 +29,7 @@ E = \frac{1}{N}\sum_{i = 1}^{N}(y_i - (mx_i + b))^2
 \end{equation}
 ```
 ## **Gradient Descent**
-Arrive at the desired $m$ and $b$ by updating these values following the direction of the greatest descent of this function. The learning rate $L$ has to be specified.
+Arrive at the desired $m$ and $b$ by updating these values following the direction of the greatest descent of this function. The ***learning rate*** $L$ has to be specified.
 ```math
 \begin{equation}
 \bar{m} = m - L\frac{∂E}{∂m}
@@ -44,3 +44,7 @@ Arrive at the desired $m$ and $b$ by updating these values following the directi
 
 ## **Visualizing the Loss Function $E(m, b)$**
 ![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/V1.gif)
+
+## **Visualizing the Gradient Descent every 5 epochs**
+Since E(m, b) has only a single global minima (A Paraboloid!) hence setting an appropriate **learning rate** is highly importantly. Too large a large rate will eventually shoot off and skip the minima which may or may not wobble down to the well upon even increasing the epochs.
+![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/V2.gif)
