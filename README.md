@@ -1,5 +1,5 @@
 # **Linear Regression 2-dimensional**
-A set of $N$ data points $(x_i, y_i)$, the goal is to find the best linear map $f: \mathbb{R}^2 \to \mathbb{R}^2$ such that $f(x) = mx + b$ fits the data points. In simpler terms, we assume the relation between the dependenet variable $y$ and independent variable $x$ is linear and try finding the optimal $m$ and $b$ such that some error function is minimised. 
+A set of $N$ data points $(x_i, y_i)$, the goal is to find the best linear map $f: \mathbb{R}^2 \to \mathbb{R}^2$ such that $f(x) = mx + b$ fits the data points. In simpler terms, we assume the relation between the dependent variable $y$ and independent variable $x$ is linear and try finding the optimal $m$ and $b$ such that some error function is minimized. 
 
 ## **Loss/Error Function**
 ```math
@@ -46,7 +46,7 @@ Arrive at the desired $m$ and $b$ by updating these values following the directi
 ![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/V1.gif)
 
 ## **Visualizing the Gradient Descent every 5 epochs**
-Since $E(m, b)$ has only a single global minima (A Paraboloid!) hence setting an appropriate **learning rate** $L$ is highly importantly. Too large a large rate will eventually shoot off and skip the minima which may or may not wobble down to the well upon even increasing the epochs.
+Since $E(m, b)$ has only a single global minima (A Paraboloid!), setting an appropriate **learning rate** $L$ is highly important. Too large a rate will eventually shoot off and skip the minima, which may or may not wobble down to the well upon even increasing the epochs.
 ![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/V2.gif)
 
 
