@@ -109,3 +109,23 @@ and starting from an initial point $\mathbf{v}_0$, we may reach the nearest loca
 
 ## **Visualizing the Descent**
 ![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/V4.gif)
+
+
+# **Convolution**
+For two functions $f(x)$ and $g(x)$, the convolution function $f(x) * g(x)$ is defined as:
+
+```math
+\begin{equation}
+(f * g) (t) = \int_{-\infty}^{\infty} f(τ) ⋅ g(t - τ) dτ
+\end{equation}
+```
+
+for **discrete** samples that we deal with:
+
+```math
+\begin{equation}
+y[n] = f[n] * g[n] = \sum_{k = -∞}^{∞} f[k] ⋅ g[n - k]
+\end{equation}
+```
+
+if $f$ has $N$ samples and $g$ has $M$ samples, then the convolved function has $N + M - 1$ samples. A basic rule: **_"flip any one of the functions, overlap it with the stationary one, multiply and add, and then traverse over."_**
