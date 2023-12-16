@@ -60,11 +60,22 @@ For a multivariable function, in $N$ dimensions let's say, $F(\textbf{v})$ which
 \end{equation}
 ```
 
-where, $L$ is the learning rate and $ L \in \mathbb{R}_{+}$ and $\mathbf{v} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \end{bmatrix} $ and $ \nabla F(\mathbf{v}) = \begin{bmatrix} \frac{\partial F}{\partial x_1} \\ \frac{\partial F}{\partial x_2} \\ \vdots \\ \frac{\partial F}{\partial x_n} \end{bmatrix} $. Hence, the equation becomes:
+where, $L$ is the learning rate and $L \in \mathbb{R}_{+}$ and 
+
+```math
+$\mathbf{v} = \begin{bmatrix} x_1 \\\ x_2 \\\ \vdots \\\ x_N \end{bmatrix} $
+```
+
+and 
+```math
+\nabla F(\mathbf{v}) = \begin{bmatrix} \frac{\partial F}{\partial x_1} \\\ \frac{\partial F}{\partial x_2} \\\ \vdots \\\ \frac{\partial F}{\partial x_n} \end{bmatrix} 
+```
+
+Hence, the equation becomes:
 
 ```math
 \begin{equation}
-\begin{bmatrix} x_1^{i + 1} \\ x_2^{i + 1} \\ \vdots \\ x_N^{i + 1} \end{bmatrix} = \begin{bmatrix} x_1^i \\ x_2^i \\ \vdots \\ x_N^i \end{bmatrix} - L \begin{bmatrix}\frac{\partial F}{\partial x_1} \\ \frac{\partial F}{\partial x_2} \\ \vdots \\ \frac{\partial F}{\partial x_n}
+\begin{bmatrix} x_1^{i + 1} \\\ x_2^{i + 1} \\\ \vdots \\\ x_N^{i + 1} \end{bmatrix} = \begin{bmatrix} x_1^i \\\ x_2^i \\\ \vdots \\\ x_N^i \end{bmatrix} - L \begin{bmatrix}\frac{\partial F}{\partial x_1} \\\ \frac{\partial F}{\partial x_2} \\\ \vdots \\\ \frac{\partial F}{\partial x_n}
 \end{bmatrix}
 \end{equation}
 ```
@@ -73,10 +84,28 @@ where, $L$ is the learning rate and $ L \in \mathbb{R}_{+}$ and $\mathbf{v} = \b
 Notice that the decrease in $F(\mathbf{v})$ is guaranteed only to the nearest well, which may or may not be the global minima. We may run for a specified number of epochs or terminate at a set tolerance too.
 
 ## **2-dimensional example**
-Let $ F(\mathbf{v}) = F\left(\begin{bmatrix} x \\ y \end{bmatrix}\right) = \sin(x)\cos(y) $, then the gradient $ ∇F(\mathbf{v}) = \begin{bmatrix}\frac{\partial F}{\partial x} \\ \frac{\partial F}{\partial y} \end{bmatrix} = \begin{bmatrix} \cos(x)\cos(y) \\ -\sin(x)\sin(y) \end{bmatrix} $ and starting from an initial point $ \mathbf{v}_0 $, we may reach the nearest local minima as:
+Let
+
+```math
+F(\mathbf{v}) = F\left(\begin{bmatrix} x \\\ y \end{bmatrix}\right) = \sin(x)\cos(y)
+```
+
+then the gradient 
+
+```math
+∇F(\mathbf{v}) = \begin{bmatrix}\frac{\partial F}{\partial x} \\\ \frac{\partial F}{\partial y} \end{bmatrix} = \begin{bmatrix} \cos(x)\cos(y) \\\ -\sin(x)\sin(y) \end{bmatrix}
+```
+
+and starting from an initial point $\mathbf{v}_0$, we may reach the nearest local minima as:
 
 ```math
 \begin{equation}
-\begin{bmatrix} \bar x \\ \bar y \end{bmatrix} = \begin{bmatrix} x \\ y \end{bmatrix} - L \begin{bmatrix} \cos(x)\cos(y) \\ -\sin(x)\sin(y) \end{bmatrix}
+\begin{bmatrix} \bar x \\\ \bar y \end{bmatrix} = \begin{bmatrix} x \\\ y \end{bmatrix} - L \begin{bmatrix} \cos(x)\cos(y) \\\ -\sin(x)\sin(y) \end{bmatrix}
 \end{equation}
 ```
+
+## **$F(x, y) = \sin(x)\cos(y)$**
+![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/V3.gif)
+
+## **Visualizing the Descent**
+![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/V4.gif)
