@@ -75,7 +75,7 @@ Hence, the equation becomes:
 
 ```math
 \begin{equation}
-\begin{bmatrix} x_1^{i + 1} \\\ x_2^{i + 1} \\\ \vdots \\\ x_N^{i + 1} \end{bmatrix} = \begin{bmatrix} x_1^i \\\ x_2^i \\\ \vdots \\\ x_N^i \end{bmatrix} - L \begin{bmatrix}\frac{\partial F}{\partial x_1} \\\ \frac{\partial F}{\partial x_2} \\\ \vdots \\\ \frac{\partial F}{\partial x_n}
+\begin{bmatrix} x_1^{(i + 1)} \\\ x_2^{(i + 1)} \\\ \vdots \\\ x_N^{(i + 1)} \end{bmatrix} = \begin{bmatrix} x_1^{(i)} \\\ x_2^{(i)} \\\ \vdots \\\ x_N^{(i)} \end{bmatrix} - L \begin{bmatrix}\frac{\partial F}{\partial x_1} \\\ \frac{\partial F}{\partial x_2} \\\ \vdots \\\ \frac{\partial F}{\partial x_n}
 \end{bmatrix}
 \end{equation}
 ```
