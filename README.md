@@ -139,7 +139,7 @@ if $f$ has $N$ samples and $g$ has $M$ samples, then the convolved function has 
 A = \begin{bmatrix}1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix}
 ```
 
-when zero padded by 1 pixel gives:
+when zero-padded by 1 pixel gives:
 ```math
 A' = \begin{bmatrix}0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 2 & 3 & 0 \\ 0 & 4 & 5 & 6 & 0 \\ 0 & 7 & 8 & 9 & 0 \\ 0 & 0 & 0 & 0 & 0\end{bmatrix}
 ```
@@ -150,14 +150,14 @@ This is achieved as:
 A_padded = np.pad(A, padding = 1, mode = "constant")
 ```
 
-Also before proceeding with the convolution, the kernel must be **flipped Left-Right** and then **Upside-Down** <br>
+Also, before proceeding with the convolution, the kernel must be **flipped Left-Right** and then **Upside-Down** <br>
 
 ```math
 ker = \begin{bmatrix}a & b & c \\ d & e & f \\ g & h & i \end{bmatrix} ⟶ \begin{bmatrix}c & b & a \\ f & e & d \\ i & h & g \end{bmatrix} ⟶ \begin{bmatrix}i & h & g \\ f & e & d \\ c & b & a \end{bmatrix} = ker'
 ```
  <br>
 
-This is achieved as:
+This is achieved by:
 
 ```python
 ker_flipped = np.flipud(np.fliplr(ker))
@@ -200,6 +200,26 @@ R_{\text{width}} = \frac{A_{\text{width}} + 2\cdot\text{padding} - ker_{\text{wi
 \end{equation}
 ```
 
+## **Function for the convolution**
+```python
+def convolve2d(image, kernel, padding, stride):
+    image_height, image_width = image.shape
+    kernel_height, kernel_width = kernel.shape
+
+    output_height = (image_height + 2 * padding - kernel_height) // stride + 1
+    output_width = (image_width + 2 * padding - kernel_width) // stride + 1
+    output = np.zeros((output_height, output_width))
+
+    padded_image = np.pad(image, padding, mode = "constant")
+    kernel = np.flipud(np.fliplr(kernel))
+
+    for i in range(0, output_height, stride):
+        for j in range(0, output_width, stride):
+            output[i, j] = np.sum(padded_image[i : i + kernel_height, j : j+kernel_width] * kernel)
+
+    return output
+```
+
 ## **The Edge Detection using Kernels - _Sobel Operators_**
 
 ```math
@@ -225,3 +245,15 @@ The final **edge-detected** image is obtained as:
 ```math
 \mathbf{A_{\text{sobel}}} = \sqrt{\mathbf{A_x}^2 + \mathbf{A_y}^2}
 ```
+
+## **Original Image $(3264, 4928)$**
+![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/Image.jpeg)
+
+## **Sobel Image $(3264, 4928)$**
+![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/Sobel.jpeg)
+
+### **$A_x$ and $A_y$**
+![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/GradX_GradY.png)
+
+### **Orginal - Grayscale - Sobel**
+![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/EdgeDetect.png)
