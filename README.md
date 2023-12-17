@@ -253,7 +253,7 @@ The final **edge-detected** image is obtained as:
 ![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/Sobel.jpeg)
 
 ### **$A_x$ and $A_y$**
-![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/GradX_GradY.png)
+![img link](https://github.com/guntas-13/ML_Scratch/blob/main/GradX_GradY.jpg)
 
 ### **Orginal - Grayscale - Sobel**
-![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/EdgeDetect.png)
+![img link](https://github.com/guntas-13/ML_Scratch/blob/main/EdgeDetect.jpg)
