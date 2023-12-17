@@ -257,3 +257,37 @@ The final **edge-detected** image is obtained as:
 
 ### **Orginal - Grayscale - Sobel**
 ![img link](https://github.com/guntas-13/ML_Scratch/blob/main/EdgeDetect.jpg)
+
+### **Final Wrapped up function for edge detection**
+```python
+def edge_detect(image_org):
+    padding, stride = 1, 1
+
+    rgb_weights = [0.2989, 0.5870, 0.1140]
+    image = np.dot(image_org, rgb_weights)
+
+    Gx = np.array([[1.0, 0.0, -1.0], [2.0, 0.0, -2.0], [1.0, 0.0, -1.0]])
+    Gy = np.array([[1.0, 2.0, 1.0], [0.0, 0.0, 0.0], [-1.0, -2.0, -1.0]])
+
+    image_height, image_width = image.shape
+
+    output_height = (image_height + 2 * padding - 3) // stride + 1
+    output_width = (image_width + 2 * padding - 3) // stride + 1
+    A_sobel = np.zeros((output_height, output_width))
+
+    padded_image = np.pad(image, padding, mode = "constant")
+    Gx = np.flipud(np.fliplr(Gx))
+    Gy = np.flipud(np.fliplr(Gy))
+
+    for i in range(0, output_height, stride):
+        for j in range(0, output_width, stride):
+            A_sobel[i, j] = (np.sum(padded_image[i : i + 3, j : j + 3] * Gx)**2 + np.sum(padded_image[i : i + 3, j : j + 3] * Gy)**2)**0.5
+    
+    plt.imsave("Edge.jpeg", A_sobel, cmap = "gray")
+    fig, ax = plt.subplots(nrows = 1, ncols = 2, figsize=(15, 15))
+    ax[0].imshow(image_org)
+    ax[0].set_title("Original Image")
+    ax[1].imshow(A_sobel, cmap = "gray")
+    ax[1].set_title("Edge-Detected")
+    plt.show()
+```
