@@ -63,7 +63,7 @@ For a multivariable function, in $N$ dimensions let's say, $F(\textbf{v})$ which
 where, $L$ is the learning rate and $L \in \mathbb{R}_{+}$ and 
 
 ```math
-$\mathbf{v} = \begin{bmatrix} x_1 \\\ x_2 \\\ \vdots \\\ x_N \end{bmatrix} $
+\mathbf{v} = \begin{bmatrix} x_1 \\\ x_2 \\\ \vdots \\\ x_N \end{bmatrix}
 ```
 
 and 
@@ -130,5 +130,98 @@ y[n] = f[n] * g[n] = \sum_{k = -∞}^{∞} f[k] ⋅ g[n - k]
 
 if $f$ has $N$ samples and $g$ has $M$ samples, then the convolved function has $N + M - 1$ samples. A basic rule: **_"flip any one of the functions, overlap it with the stationary one, multiply and add, and then traverse over."_**
 
-# **2-D Convolution**
+# **2D Convolution**
 ![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/V5.gif)
+
+## **Implementing the 2d Convolution**
+
+```math
+A = \begin{bmatrix}1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix}
+```
+
+when zero padded by 1 pixel gives:
+```math
+A' = \begin{bmatrix}0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 2 & 3 & 0 \\ 0 & 4 & 5 & 6 & 0 \\ 0 & 7 & 8 & 9 & 0 \\ 0 & 0 & 0 & 0 & 0\end{bmatrix}
+```
+<br>
+This is achieved as:
+
+```python
+A_padded = np.pad(A, padding = 1, mode = "constant")
+```
+
+Also before proceeding with the convolution, the kernel must be **flipped Left-Right** and then **Upside-Down** <br>
+
+```math
+ker = \begin{bmatrix}a & b & c \\ d & e & f \\ g & h & i \end{bmatrix} ⟶ \begin{bmatrix}c & b & a \\ f & e & d \\ i & h & g \end{bmatrix} ⟶ \begin{bmatrix}i & h & g \\ f & e & d \\ c & b & a \end{bmatrix} = ker'
+```
+ <br>
+
+This is achieved as:
+
+```python
+ker_flipped = np.flipud(np.fliplr(ker))
+```
+
+**fliplr** denoting a left-right flip and **flipud** denoting a up-down flip.
+Choose a **stride** of length 1 and perform the convolution as the dot product of kernel sized chunks of $A$ with the $ker$:
+
+```math
+\begin{bmatrix}0 & 0 & 0 \\ 0 & 1 & 2 \\ 0 & 4 & 5 \end{bmatrix} \cdot \begin{bmatrix}i & h & g \\ f & e & d \\ c & b & a \end{bmatrix} = elt_1
+```
+
+ <br><br>
+
+ ```math
+\begin{bmatrix}0 & 0 & 0 \\ 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix} \cdot \begin{bmatrix}i & h & g \\ f & e & d \\ c & b & a \end{bmatrix} = elt_2
+```
+<br>
+.
+.
+.
+<br>
+
+```math
+\begin{bmatrix}5 & 6 & 0 \\ 8 & 9 & 0 \\ 0 & 0 & 0 \end{bmatrix} \cdot \begin{bmatrix}i & h & g \\ f & e & d \\ c & b & a \end{bmatrix} = elt_N
+```
+
+ <br><br>
+Notice the dimensions of the final output matrix:
+
+```math
+\begin{equation}
+R_{\text{height}} = \frac{A_{\text{height}} + 2\cdot\text{padding} - ker_{\text{height}}}{\text{stride}} + 1
+\end{equation}
+```
+
+```math
+\begin{equation}
+R_{\text{width}} = \frac{A_{\text{width}} + 2\cdot\text{padding} - ker_{\text{width}}}{\text{stride}} + 1
+\end{equation}
+```
+
+## **The Edge Detection using Kernels - _Sobel Operators_**
+
+```math
+\mathbf{G_x} = \begin{bmatrix}1 & 0 & -1 \\ 2 & 0 & -2 \\ 1 & 0 & -1 \end{bmatrix}
+```
+
+```math
+\mathbf{G_y} = \begin{bmatrix}1 & 2 & 1 \\ 0 & 0 & 0 \\ -1 & -2 & -1 \end{bmatrix}
+```
+
+Obtain two images $A_x$ and $A_y$ for detecting **vertical** and **horizontal** edges as:
+
+```math
+\mathbf{A_x} = \mathbf{G_x} * \mathbf{A} = \begin{bmatrix}1 & 0 & -1 \\ 2 & 0 & -2 \\ 1 & 0 & -1 \end{bmatrix} * \mathbf{A}
+```
+
+```math
+\mathbf{A_y} = \mathbf{G_y} * \mathbf{A} = \begin{bmatrix}1 & 2 & 1 \\ 0 & 0 & 0 \\ -1 & -2 & -1 \end{bmatrix} * \mathbf{A}
+```
+
+The final **edge-detected** image is obtained as:
+
+```math
+\mathbf{A_{\text{sobel}}} = \sqrt{\mathbf{A_x}^2 + \mathbf{A_y}^2}
+```
