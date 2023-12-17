@@ -129,3 +129,6 @@ y[n] = f[n] * g[n] = \sum_{k = -∞}^{∞} f[k] ⋅ g[n - k]
 ```
 
 if $f$ has $N$ samples and $g$ has $M$ samples, then the convolved function has $N + M - 1$ samples. A basic rule: **_"flip any one of the functions, overlap it with the stationary one, multiply and add, and then traverse over."_**
+
+# **2-D Convolution**
+![Alt Text](https://github.com/guntas-13/ML_Scratch/blob/main/V5.gif)
