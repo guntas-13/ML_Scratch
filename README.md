@@ -291,3 +291,37 @@ def edge_detect(image_org):
     ax[1].set_title("Edge-Detected")
     plt.show()
 ```
+
+## **Pooling**
+
+```python
+def max_pool(image, kernel_size, stride):
+    image_height, image_width, channels = image.shape
+    kernel_height, kernel_width = kernel_size[0], kernel_size[1]
+
+    output_height = (image_height - kernel_height) // stride + 1
+    output_width = (image_width - kernel_width) // stride + 1
+    output = np.zeros((output_height, output_width, 3))
+
+    for c in range(channels):
+        for i in range(0, output_height * stride, stride):
+            for j in range(0, output_width * stride, stride):
+                output[i // stride, j // stride, c] = np.max(image[i : i + kernel_height, j : j + kernel_width, c])
+                // Replace np.max() with np.mean() for Average Pooling
+                // output[i // stride, j // stride, c] = np.mean(image[i : i + kernel_height, j : j + kernel_width, c])
+    
+    final = output.astype(np.uint8) 
+    return final
+```
+
+### **Original Image $(6069, 4855)$ **
+![img link](https://github.com/guntas-13/ML_Scratch/blob/main/ImageSq.jpeg)
+
+### **Max Pooled using $3\times3$ filter and stride = $3$ Final Image: $(2023, 1618)$**
+![img link](https://github.com/guntas-13/ML_Scratch/blob/main/MaxPooled.jpeg)
+
+### **Further Max Pooled using $3\times3$ filter and stride = $3$ Final Image: $(674, 539)$**
+![img link](https://github.com/guntas-13/ML_Scratch/blob/main/FurtherMaxPooled.jpeg)
+
+### **Average Pooled using $3\times3$ filter and stride = $3$ Final Image: $(2023, 1618)$**
+![img link](https://github.com/guntas-13/ML_Scratch/blob/main/AvgPooled.jpeg)
