@@ -307,8 +307,8 @@ def max_pool(image, kernel_size, stride):
         for i in range(0, output_height * stride, stride):
             for j in range(0, output_width * stride, stride):
                 output[i // stride, j // stride, c] = np.max(image[i : i + kernel_height, j : j + kernel_width, c])
-                %% Replace np.max() with np.mean() for Average Pooling
-                %% output[i // stride, j // stride, c] = np.mean(image[i : i + kernel_height, j : j + kernel_width, c])
+                # Replace np.max() with np.mean() for Average Pooling
+                # output[i // stride, j // stride, c] = np.mean(image[i : i + kernel_height, j : j + kernel_width, c])
     
     final = output.astype(np.uint8) 
     return final
