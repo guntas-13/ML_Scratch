@@ -314,7 +314,7 @@ def max_pool(image, kernel_size, stride):
     return final
 ```
 
-### **Original Image $(6069, 4855)$ **
+### **Original Image $(6069, 4855)$**
 ![img link](https://github.com/guntas-13/ML_Scratch/blob/main/ImageSq.jpeg)
 
 ### **Max Pooled using $3\times3$ filter and stride = $3$ Final Image: $(2023, 1618)$**
